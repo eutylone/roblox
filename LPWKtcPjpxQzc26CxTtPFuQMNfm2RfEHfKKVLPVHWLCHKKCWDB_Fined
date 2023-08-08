@@ -1,0 +1,114 @@
+--[[
+Something like RayX? I dont know.
+Why? I dont know?
+Hate me or laughing from it? Cant relate.
+Do not copy anything from there and use the loadstring, or u will not have newest updates.
+Loadstring: loadstring(game:HttpGet('https://raw.githubusercontent.com/eutylone/roblox/main/LPWKtcPjpxQzc26CxTtPFuQMNfm2RfEHfKKVLPVHWLCHKKCWDB_Fined'))()
+--]]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+local discord_link = "discord.gg/pPgAX3ncFe"
+local firstletter = "F"
+local last = "ined ["..discord_link.."]"
+local updates = "Script was made"
+local version = "v1.0"
+local edited_string = '' ..firstletter.. '<font color="rgb(255,255,255)">' ..last.. '</font>'
+
+local greencolor = Color3.fromRGB(0, 255, 81)
+local function green(object)
+    if object:IsA("TextLabel") and object.Name == "Name" then
+        object.TextColor3 = greencolor
+        object.Text = edited_string
+        object.TextSize = 22
+    elseif object.Name == "RedLine" and object.BackgroundColor3 == Color3.fromRGB(255, 0, 0) then
+        game:GetService("RunService").RenderStepped:Connect(
+            function()
+                object.BackgroundColor3 = greencolor
+            end
+        )
+    elseif object:IsA("TextLabel") and string.find(object.Text, "discord.gg/") then
+    object.Text = discord_link
+    elseif object:IsA("TextLabel") and object.Name == "AnnouncementText" then
+    object.Text = discord_link
+    elseif object:IsA("TextLabel") and object.Name == "UpdateText" then
+    object.Text = updates
+    elseif object:IsA("TextLabel") and object.Name == "Version" then
+    object.Text = version
+    elseif object:IsA("TextLabel") and object.Name == "CoFounderCreds" then
+    object.Text = 'Fined Developer <font color="rgb(0, 255, 0)">[ONLINE]</font>'
+    elseif object.Name == "CoFounderImage" then
+    object.Image = ''
+    elseif object:IsA("TextLabel") and object.Name == "CoFounderUsername" then
+    object.Text = "pqfn · eutylone"
+    elseif object:IsA("ScrollingFrame") and object.ScrollBarImageColor3 == Color3.fromRGB(255, 0, 0) then
+        game:GetService("RunService").RenderStepped:Connect(
+            function()
+                object.ScrollBarImageColor3 = greencolor
+            end
+        )
+    elseif object:IsA("TextButton") and string.find(object.Name, "_") then
+        game:GetService("RunService").RenderStepped:Connect(
+            function()
+                if object.BackgroundColor3 == Color3.fromRGB(255, 0, 0) then
+                    object.BackgroundColor3 = greencolor
+                end
+            end
+        )
+    elseif object:IsA("ImageLabel") and object.ImageColor3 == Color3.fromRGB(255, 0, 0) then
+        game:GetService("RunService").RenderStepped:Connect(
+            function()
+                object.ImageColor3 = greencolor
+            end
+        )
+    end
+end
+
+local function scan(object)
+    green(object)
+    for _, child in ipairs(object:GetChildren()) do
+        scan(child)
+    end
+end
+
+
+game:GetService("StarterGui"):SetCore("SendNotification",{
+Title = "Fined";
+Text = "Script is being loaded. Be patient, takes some time.";
+Duration = 3.5;
+})
+
+
+loadstring(game:HttpGet('https://raw.githubusercontent.com/SpaceYes/Lua/Main/DaHood.Lua'))()
+
+repeat task.wait() until game.CoreGui:FindFirstChild("Roblox")
+task.wait(0.5)
+
+scan(game.CoreGui)
+
+game:GetService("StarterGui"):SetCore("SendNotification",{
+Title = "Fined";
+Text = "Fined was made by vears and Bellon.";
+Duration = 3.5;
+})
+
+game.CoreGui.Roblox.NotificationFrame.ChildAdded:Connect(function(tobject)
+game:GetService("RunService").RenderStepped:Wait()
+scan(game.CoreGui.Roblox.NotificationFrame)
+end)
